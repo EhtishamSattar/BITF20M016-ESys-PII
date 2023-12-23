@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import { Route,Routes } from 'react-router-dom';
 import './App.css';
+import Login from './Pages/Login';
+// import AddStudent from './Pages/addStudent';
+import AddStudentPage from './Pages/AddStudentPage';
+import Dashboard from './Pages/Dashboard';
+import Studentlist from './Pages/Studentlist';
+import { useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => { 
+    alert("There is just a Login Page implemented , you cant signUp So,\nEnter with email : admin@gmail.com\nPassword : admin")
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Routes>
+     <Route path="/" element={<Login />} />
+      <Route path="/addStudent" element={<AddStudentPage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/studentlist" element={<Studentlist />} />
+    </Routes>
+    </>
   );
 }
 

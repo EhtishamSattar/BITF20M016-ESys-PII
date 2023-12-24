@@ -125,9 +125,9 @@ const AddStudentForm = () => {
         <>
             <div className='container p-10'>
                 <h1 className='text-xl font-bold text-center mt-20 mb-6'>ADD A STUDENT</h1>
-                <form onSubmit={handleSubmit} className='w-4/5 h-full m-auto'>
+                <form onSubmit={handleSubmit} className='h-full m-auto'>
                 <p className="text-green-700 mb-6">Hover over the City,Degree,Department,Gender and Interest filed to see the <i>Special Dropdown</i> </p>
-                    <div className='flex flex-row flex-wrap gap-6 mt-3'>
+                    <div className='flex flex-row flex-wrap gap-4 mt-3'>
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="name">Full Name</label>
                             <input autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="name" placeholder="Name" required />

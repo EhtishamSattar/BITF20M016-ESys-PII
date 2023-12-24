@@ -64,4 +64,38 @@ router.get("/getAllInterests", async (req, res) => {
         res.status(500).json({ success: false, error: 'Internal server error' });
     }
 });
+
+
+router.get("/getAllStudents", async (req, res) => {
+    let success = false;
+    try {
+        // Fetch all students
+        console.log("getting all students")
+        const students = await Students.find({});
+        success = true;
+        res.json({ success, students });
+    } catch (error) {
+        console.error('Error fetching students:', error);
+        res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+});
+
+router.delete("/deleteStudent/:email", async (req, res) => {
+    const emailToDelete = req.params.email;
+
+    try {
+        // Find the student by email and delete it
+        const result = await Students.findOneAndDelete({ email: emailToDelete });
+
+        if (result) {
+            res.json({ success: true, message: 'Student deleted successfully' });
+        } else {
+            res.status(404).json({ success: false, error: 'Student not found' });
+        }
+    } catch (error) {
+        console.error('Error deleting student:', error);
+        res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+});
+
 module.exports=router;

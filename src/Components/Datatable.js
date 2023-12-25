@@ -13,7 +13,7 @@ const DatatablePage = () => {
                 field: 'name',
                 sort: 'desc',
                 width: 200,
-                
+
             },
             {
                 label: 'Email',
@@ -74,14 +74,14 @@ const DatatablePage = () => {
                 field: 'endDate',
                 sort: 'asc',
                 width: 270
-            },{
+            }, {
                 label: 'Actions',
                 field: 'actions',
                 width: 270,
-              },
+            },
 
 
-        ],rows:students.map((student) => ({
+        ], rows: students.map((student) => ({
             // ... (other fields)
             name: student.name,
             email: student.email,
@@ -91,36 +91,65 @@ const DatatablePage = () => {
             department: student.department,
             degree: student.degree,
             interest: student.interest,
-            gender:student.gender,
-            subject:student.subject,
-            endDate:student.endDate,
+            gender: student.gender,
+            subject: student.subject,
+            endDate: student.endDate,
             actions: (
-              <div>
-                <Link to="#" className=" mr-2 text-pink-600 font-medium" aria-hidden="true" onClick={() => handleActionClick('view', student)}>View</Link>
-                <Link to={`/editStudent/${student.id}`} className="mr-2 blue-text font-medium" aria-hidden="true" onClick={() => handleActionClick('edit', student)}>Edit</Link>
-                <Link to="#" className=" red-text font-medium" aria-hidden="true" onClick={() => handleActionClick('delete', student)}>Delete</Link>
-              </div>
+                <div>
+                    <Link to="/viewStudent" className=" mr-2 text-pink-600 font-medium" aria-hidden="true" onClick={() => handleActionClick('view', student)}>View</Link>
+                    <Link to="/editStudent" // Pass the student object in the state
+                    className="mr-2 blue-text font-medium" aria-hidden="true" onClick={() => handleActionClick('edit', student)}>Edit</Link>
+                    <Link to="#" className=" red-text font-medium" aria-hidden="true" onClick={() => handleActionClick('delete', student)}>Delete</Link>
+                </div>
             ),
-          })),
+        })),
     };
 
     const handleActionClick = (action, student) => {
+
         switch (action) {
-          case 'view':
-            console.log("View clicked for student:", student);
-            break;
-          case 'edit':
-            console.log("Edit clicked for student:", student);
-            break;
-          case 'delete':
-            console.log("Delete clicked for student:", student);
-            break;
-          default:
-            break;
+            case 'view':
+                console.log("View clicked for student:", student);
+                localStorage.setItem("student", JSON.stringify(student));
+                break;
+            case 'edit':
+                console.log("Edit clicked for student:", student);
+                localStorage.setItem("student", JSON.stringify(student));
+                break;
+            case 'delete':
+                console.log("Delete clicked for student:", student);
+                const deleteStudent = async () => {
+
+                    console.log("button clicked")
+                    const response = await fetch(`http://localhost:5000/api/student/deleteStudent/${student.email}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+
+                    });
+                    const json = await response.json();
+                    //console.log(credentials.password," ",credentials.cpassword);
+                    // console.log(json.success,json.authToken);
+                    if (json.success) {
+                        //to redirect we are using useNavigate or useHistory hook from react router dom
+                        alert(`Student with email "${student.email}"  deleted successfully :) . Check it out in Students's List`);
+                        window.location.reload();
+
+                    } else {
+                        console.log(json);
+                        alert(json.error);
+
+                    }
+                }
+                deleteStudent();
+                break;
+            default:
+                break;
         }
-    
+
         setSelectedRow(student);
-      };
+    };
 
     const getAllStudents = async (e) => {
 
@@ -135,8 +164,8 @@ const DatatablePage = () => {
 
         if (json.success) {
             setStudents(json.students);
-        
-            console.log("students from database",students);
+
+            console.log("students from database", students);
 
         } else {
             console.log("this ... ", json);
@@ -153,13 +182,13 @@ const DatatablePage = () => {
     return (
 
         <>
-            <div className='datatable p-10'>
-                <MDBDataTable 
+            <div className='datatable px-10 py-4'>
+                <MDBDataTable
                     striped
                     bordered
                     responsive
                     sorting="true"
-                    entriesOptions={[5, 10, 20, 30,50]}
+                    entriesOptions={[5, 10, 20, 30, 50]}
                     data={data}
                 />
             </div>

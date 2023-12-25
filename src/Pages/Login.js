@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 
 
@@ -11,6 +11,10 @@ const Login = () => {
     //destructuring
     const { email, password } = credentials;
 
+   
+    useEffect(() => {
+        alert("There is just a Login Page implemented , you cant signUp So,\nEnter with email : admin@gmail.com\nPassword : admin")
+    }, [])
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("button clicked")
@@ -26,8 +30,8 @@ const Login = () => {
         // console.log(json.success,json.authToken);
         if (json.success) {
             //to redirect we are using useNavigate or useHistory hook from react router dom
-            navigate("/addStudent"); 
-            alert("You are about to Login ! Congratulations :)");           
+            navigate("/addStudent");
+            alert("You are about to Login ! Congratulations :)");
 
         } else {
             console.log(json);

@@ -1,68 +1,19 @@
-// import React, { useState } from 'react'
-
-// const AddStudentForm = () => {
-//     const [interest, setInterest]=useState('')
-
-//     const onChange = (e) => {
-//         setInterest({ ...interest, [e.target.name]: e.target.value });
-//         //console.log(credentials.password,"  ",credentials.cpassword);
-//         //setInterest(e.target.value)
-//         console.log(interest);
-//         sessionStorage.setItem('interest',interest) 
-//     }
-
-
-//     return (
-
-//         <>
-
-
-//             {/* <label for="browser">Choose a browser:</label>
-//             <select id="browser" name="browser" style={{ "border": "1px solid #ccc", "padding": "5px", "border-radius": "4px" }}>
-//                 <option value="chrome">Chrome</option>
-//                 <option value="firefox">Firefox</option>
-//                 <option value="ie">Internet Explorer</option>
-//                 <option value="opera">Opera</option>
-//                 <option value="safari">Safari</option>
-//                 <option value="edge">Microsoft Edge</option>
-//             </select> */}
-
-
-//             <div className='mt-20'>
-//             <label for="browser">Choose or type a browser:</label>
-//             <input onChange={onChange} value={interest} list="browsers" id="browser" name="interest" style={{ "border": "1px solid #ccc", "padding": "5px", "border-radius": "4px" }} />
-//             <datalist id="browsers">
-//                 <option value="Chrome" />
-//                 <option value="Firefox" />
-//                 <option value="Internet Explorer" />
-//                 <option value="Opera" />
-//                 <option value="Safari" />
-//                 <option value="Microsoft Edge" />
-//             </datalist>
-//             </div>
-
-
-//         </>
-//     )
-// }
-
-// export default AddStudentForm
-
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const AddStudentForm = () => {
+const EditStudentForm = () => {
+    const student=JSON.parse(localStorage.getItem("student"));
+    console.log(student);
     let navigate = useNavigate();
     const [interest, setInterest] = useState([]);
-    const [credentials, setcredentials] = useState({ name: "", email: "", rollnumber: "", subject: "", interest: "", city: "", gender: "", dob: "", degree: "", department: "", startdate: "", enddate: "" });
+    const [credentials, setcredentials] = useState({ name: student.name, email: student.email, rollnumber: student.rollnumber, subject: student.subject, interest: student.interest, city: student.city, gender: student.gender, dob: student.dob, degree: student.degree, department: student.department, startdate: student.startdate, enddate: student.enddate });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("form submitted with data ", credentials);
         const { name, email, rollnumber, subject, interest, city, gender, dob, degree, department, startdate, enddate } = credentials;
-        const response = await fetch("http://localhost:5000/api/student/addStudent", {
-            method: "POST",
+        const response = await fetch(`http://localhost:5000/api/student/UpdateStudent/${student.email}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -75,7 +26,7 @@ const AddStudentForm = () => {
         if (json.success) {
             //to redirect we are using useNavigate or useHistory hook from react router dom
             navigate("/studentlist");
-            alert("Student Added Successfully :) ");
+            alert("Student Updated Successfully :) Check it out in Students' List ");
 
         } else {
             console.log(json);
@@ -95,8 +46,8 @@ const AddStudentForm = () => {
 
     const getInterests = async (e) => {
 
-        const response = await fetch("http://localhost:5000/api/student/getAllInterests", {
-            method: "GET",
+        const response = await fetch(`http://localhost:5000/api/student/getAllInterests`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -129,20 +80,20 @@ const AddStudentForm = () => {
                     <div className='flex flex-row flex-wrap gap-4 mt-3'>
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="name">Full Name</label>
-                            <input autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="name" placeholder="Name" required />
+                            <input value={credentials.name} autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="name" placeholder="name" required />
                         </div>
 
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="email">Email</label>
-                            <input autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="email" name="email" placeholder="xyz@gmail.com" required />
+                            <input value={credentials.email} autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="email" name="email" placeholder="xyz@gmail.com" required />
                         </div>
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="rollnumber">Roll Number</label>
-                            <input autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="rollnumber" placeholder="e.g BITF20M0XX" required />
+                            <input value={credentials.rollnumber} autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="rollnumber" placeholder="e.g BITF20M0XX" required />
                         </div>
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="subject">Subject</label>
-                            <input autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="subject" placeholder="Subject" required />
+                            <input value={credentials.subject} autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="subject" placeholder="Subject" required />
                         </div>
 
                         <div>
@@ -154,7 +105,6 @@ const AddStudentForm = () => {
                                 list="browsers1"
                                 id="browser1"
                                 name="interest"
-                                required
 
                             />
                             <datalist id="browsers1">
@@ -173,7 +123,6 @@ const AddStudentForm = () => {
                                 list="browsers2"
                                 id="browser2"
                                 name="city"
-                                required
 
                             />
                             <datalist id="browsers2">
@@ -188,7 +137,7 @@ const AddStudentForm = () => {
 
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="dob">Date of Birth</label>
-                            <input onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="date" name="dob" placeholder="" required />
+                            <input value={credentials.dob} onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="date" name="dob" placeholder="" required />
                         </div>
 
 
@@ -201,7 +150,6 @@ const AddStudentForm = () => {
                                 list="browsers3"
                                 id="browser3"
                                 name="gender"
-                                required
 
                             />
                             <datalist id="browsers3">
@@ -240,7 +188,6 @@ const AddStudentForm = () => {
                                 list="browsers5"
                                 id="browser"
                                 name="department"
-                                required
 
                             />
                             <datalist id="browsers5">
@@ -254,14 +201,14 @@ const AddStudentForm = () => {
                         </div>
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="startdate">Start Date</label>
-                            <input onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="date" name="startdate" placeholder="" required />
+                            <input value={credentials.startdate} onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="date" name="startdate" placeholder="" required />
                         </div>
 
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="enddate">End Date</label>
-                            <input onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="date" name="enddate" placeholder="" required />
+                            <input value={credentials.enddate} onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="date" name="enddate" placeholder="" required />
                         </div>
-                        <button className='bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded '>Add Student</button>
+                        <button className='bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded '>Update</button>
                         <button onClick={() => { window.location.reload(); }} className='bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded '>Cancel</button>
 
                     </div>
@@ -274,4 +221,4 @@ const AddStudentForm = () => {
     );
 };
 
-export default AddStudentForm;
+export default EditStudentForm

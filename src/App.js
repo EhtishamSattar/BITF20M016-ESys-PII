@@ -5,13 +5,12 @@ import Login from './Pages/Login';
 import AddStudentPage from './Pages/AddStudentPage';
 import Dashboard from './Pages/Dashboard';
 import Studentlist from './Pages/Studentlist';
-import { useEffect } from 'react';
+import EditStudent from './Pages/EditStudent';
+import ViewStudent from './Pages/ViewStudent';
+
 
 function App() {
 
-  useEffect(() => { 
-    alert("There is just a Login Page implemented , you cant signUp So,\nEnter with email : admin@gmail.com\nPassword : admin")
-  }, [])
   return (
     <>
     <Routes>
@@ -19,6 +18,8 @@ function App() {
       <Route path="/addStudent" element={<AddStudentPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/studentlist" element={<Studentlist />} />
+      <Route path="/editStudent" element={<EditStudent/>} />
+      <Route path="/viewStudent" element={<ViewStudent/>} />
     </Routes>
     </>
   );

@@ -4,7 +4,7 @@ import Navbar from '../Components/Navbar'
 const Dashboard = () => {
   return (
     <>
-        <Navbar />
+      <Navbar />
       this is dashboard
     </>
   )

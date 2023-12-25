@@ -6,8 +6,8 @@ const Studentlist = () => {
   return (
     <>
     <Navbar />
-    <div className='mt-10'>
-      <h1 className='text-center text-3xl font-bold'>Student List</h1>
+    <div className='mt-4'>
+      <h1 className='text-center text-3xl font-bold'>Students' List</h1>
       <DatatablePage />
     </div>
     </>

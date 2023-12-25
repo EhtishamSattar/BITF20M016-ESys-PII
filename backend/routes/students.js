@@ -98,4 +98,24 @@ router.delete("/deleteStudent/:email", async (req, res) => {
     }
 });
 
+
+router.put("/updateStudent/:email", async (req, res) => {
+    const emailToUpdate = req.params.email;
+    const updatedStudentData = req.body; // Assuming the updated data is sent in the request body
+    console.log(updatedStudentData);
+    try {
+        // Find the student by email and update it
+        const result = await Students.findOneAndUpdate({ email: emailToUpdate }, updatedStudentData, { new: true });
+
+        if (result) {
+            res.json({ success: true, message: 'Student updated successfully', updatedStudent: result });
+        } else {
+            res.status(404).json({ success: false, error: 'Student not found' });
+        }
+    } catch (error) {
+        console.error('Error updating student:', error);
+        res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+});
+
 module.exports=router;

@@ -8,11 +8,7 @@ const logActivity = (req, res, next) => {
     const log = new ActivityLog({ method: method, url: url });
 log.save();
     
-    // Save the log to a persistent storage (MongoDB, file, etc.)
-    // You can create a dedicated collection for activity logs in MongoDB
-    // Example:
-    // const log = new ActivityLog({ user, method, url, timestamp });
-    // log.save();
+
     next();
   };
   

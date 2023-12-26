@@ -12,8 +12,6 @@ const Login = () => {
     //destructuring
     const { email, password } = credentials;
 
-   
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("button clicked")

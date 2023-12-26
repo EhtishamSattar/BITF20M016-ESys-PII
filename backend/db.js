@@ -1,7 +1,5 @@
 const mongoose=require('mongoose');
 mongoose.set('strictQuery', false);
-//! mongoose manages the database 
-// akhri forward slash ky bad jo bhi apki created database ka naam hai wo likh dein
 const mongooseURI='mongodb://127.0.0.1:27017/studentInterestsSystem';
 
 

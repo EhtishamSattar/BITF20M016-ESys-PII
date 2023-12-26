@@ -7,7 +7,7 @@ const Studentlist = () => {
     <>
     <Navbar />
     <div className='mt-4'>
-      <h1 className='text-center text-3xl font-bold'>Students' List</h1>
+      <h1 className='text-center text-xl font-bold mt-5 mb-1'>STUDENTS' LIST</h1>
       <DatatablePage />
     </div>
     </>

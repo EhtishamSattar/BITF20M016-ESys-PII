@@ -1,5 +1,6 @@
-import { useState,useEffect } from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom"
+
 
 
 const Login = () => {
@@ -12,9 +13,7 @@ const Login = () => {
     const { email, password } = credentials;
 
    
-    useEffect(() => {
-        alert("There is just a Login Page implemented , you cant signUp So,\nEnter with email : admin@gmail.com\nPassword : admin")
-    }, [])
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("button clicked")
@@ -45,6 +44,9 @@ const Login = () => {
     }
     return (
         <>
+        <div className="w-full bg-green-400 text-black p-3 font-normal text-center">
+            Use email : <span className="font-bold"> admin@gmail.com</span> and password : <span className="font-bold">admin</span>
+        </div>
             <div className="bg-gray-100">
                 <div className="min-h-screen flex items-center justify-center">
                     <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
@@ -55,8 +57,10 @@ const Login = () => {
                         <div className="mb-4">
                             <input onChange={onChange} name="password" type="password" placeholder="*******" className="email-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" />
                         </div>
-                        <button onClick={handleSubmit} className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 focus:outline-none">Login</button>
+                        <button onClick={handleSubmit} className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 focus:outline-none mb-2">Login As Admin</button>
+                        <button onClick={()=>navigate("/studentListSheet")} className="w-full bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 focus:outline-none">Are you a Student?</button>
                     </div>
+
                 </div>
             </div>
         </>

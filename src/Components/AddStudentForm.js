@@ -1,54 +1,3 @@
-// import React, { useState } from 'react'
-
-// const AddStudentForm = () => {
-//     const [interest, setInterest]=useState('')
-
-//     const onChange = (e) => {
-//         setInterest({ ...interest, [e.target.name]: e.target.value });
-//         //console.log(credentials.password,"  ",credentials.cpassword);
-//         //setInterest(e.target.value)
-//         console.log(interest);
-//         sessionStorage.setItem('interest',interest) 
-//     }
-
-
-//     return (
-
-//         <>
-
-
-//             {/* <label for="browser">Choose a browser:</label>
-//             <select id="browser" name="browser" style={{ "border": "1px solid #ccc", "padding": "5px", "border-radius": "4px" }}>
-//                 <option value="chrome">Chrome</option>
-//                 <option value="firefox">Firefox</option>
-//                 <option value="ie">Internet Explorer</option>
-//                 <option value="opera">Opera</option>
-//                 <option value="safari">Safari</option>
-//                 <option value="edge">Microsoft Edge</option>
-//             </select> */}
-
-
-//             <div className='mt-20'>
-//             <label for="browser">Choose or type a browser:</label>
-//             <input onChange={onChange} value={interest} list="browsers" id="browser" name="interest" style={{ "border": "1px solid #ccc", "padding": "5px", "border-radius": "4px" }} />
-//             <datalist id="browsers">
-//                 <option value="Chrome" />
-//                 <option value="Firefox" />
-//                 <option value="Internet Explorer" />
-//                 <option value="Opera" />
-//                 <option value="Safari" />
-//                 <option value="Microsoft Edge" />
-//             </datalist>
-//             </div>
-
-
-//         </>
-//     )
-// }
-
-// export default AddStudentForm
-
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -123,10 +72,10 @@ const AddStudentForm = () => {
 
     return (
         <>
-            <div className='container p-10'>
+            <div className='container mb-3'>
                 <form onSubmit={handleSubmit} className='h-full m-auto'>
                 <p className="text-green-700 mb-3">Hover over the City, Degree, Department, Gender and Interest filed to see the <i className='text-red-600 font-semibold'>Special  Dropdown</i></p>
-                    <div className='flex flex-row flex-wrap gap-4 mt-3'>
+                    <div className='flex md:flex-row flex-col flex-wrap gap-2 mt-3'>
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="name">Full Name</label>
                             <input autoComplete="off" onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="text" name="name" placeholder="Name" required />

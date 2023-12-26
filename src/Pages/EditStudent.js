@@ -7,6 +7,7 @@ const EditStudent = () => {
   return (
     <>
     <Navbar />
+    <h1 className='text-xl font-bold text-center mt-5 mb-3'>UPDATE STUDENT</h1>
     <EditStudentForm />
     </>
   )

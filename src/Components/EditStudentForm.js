@@ -74,9 +74,9 @@ const EditStudentForm = () => {
 
     return (
         <>
-            <div className='container p-10'>
+            <div className='container px-10'>
+            <p className="text-green-700 mb-3">Hover over the City, Degree, Department, Gender and Interest filed to see the <i className='text-red-600 font-semibold'>Special  Dropdown</i></p>
                 <form onSubmit={handleSubmit} className='h-full m-auto'>
-                <p className="text-green-700 mb-3">Hover over the City, Degree, Department, Gender and Interest filed to see the <i className='text-red-600 font-semibold'>Special  Dropdown</i></p>
                     <div className='flex flex-row flex-wrap gap-4 mt-3'>
                         <div>
                             <label className="text-gray-600  inline-block pb-2" htmlFor="name">Full Name</label>
@@ -208,7 +208,7 @@ const EditStudentForm = () => {
                             <label className="text-gray-600  inline-block pb-2" htmlFor="enddate">End Date</label>
                             <input value={credentials.enddate} onChange={onChange} className="border border-gray-400 focus:outline-slate-400 rounded-md w-full shadow-sm px-5 py-2" type="date" name="enddate" placeholder="" required />
                         </div>
-                        <button className='bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded '>Update</button>
+                        <button className='bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-6 rounded right-0'>Update</button>
                         <button onClick={() => { window.location.reload(); }} className='bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded '>Cancel</button>
 
                     </div>

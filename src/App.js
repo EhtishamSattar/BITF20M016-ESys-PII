@@ -7,6 +7,7 @@ import Dashboard from './Pages/Dashboard';
 import Studentlist from './Pages/Studentlist';
 import EditStudent from './Pages/EditStudent';
 import ViewStudent from './Pages/ViewStudent';
+import StudentListSheet from './Components/StudentListSheet';
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
       <Route path="/studentlist" element={<Studentlist />} />
       <Route path="/editStudent" element={<EditStudent/>} />
       <Route path="/viewStudent" element={<ViewStudent/>} />
+      <Route path="/studentListSheet" element={<StudentListSheet/>} />
+      
     </Routes>
     </>
   );

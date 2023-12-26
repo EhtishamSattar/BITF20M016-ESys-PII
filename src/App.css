@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Inter Extra'; /* Name the font-family for later use */
+    src: url('../public/fonts/Inter-ExtraLight.ttf') format('truetype');
+    /* Add other font formats if needed, e.g., woff, woff2 */
+}
+
+@font-face {
+    font-family: 'Inter Med'; /* Name the font-family for later use */
+    src: url('../public/fonts/Inter-Medium.ttf') format('truetype');
+    /* Add other font formats if needed, e.g., woff, woff2 */
+}
+
+@font-face {
+    font-family: 'Inter Semibold'; /* Name the font-family for later use */
+    src: url('../public/fonts/Inter-SemiBold.ttf') format('truetype');
+    /* Add other font formats if needed, e.g., woff, woff2 */
+} 
